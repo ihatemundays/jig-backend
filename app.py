@@ -12,7 +12,7 @@ class JigAPI(MethodView):
     def get(self, label):
         try:
             with graph.session() as session:
-                result = session.run('MATCH p=(n:{label})-[r]->(m) RETURN p', label=label)
+                result = session.run('MATCH p=(n:%s)-[r]->(m) RETURN p' % label)
 
                 for record in result:
                     pp = pprint.PrettyPrinter(indent=4)
