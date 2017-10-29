@@ -6,7 +6,7 @@ from neo4j.v1 import GraphDatabase, basic_auth
 import pprint
 
 app = Flask(__name__)
-graph = GraphDatabase('bolt://localhost:7687', auth=basic_auth('neo4j', 'neo4j-server'))
+graph = GraphDatabase.driver('bolt://localhost:7687', auth=basic_auth('neo4j', 'neo4j-server'))
 
 class JigAPI(MethodView):
     def get(self, label):
