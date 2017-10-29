@@ -6,13 +6,11 @@ from neo4j.v1 import GraphDatabase, basic_auth
 import pprint
 
 app = Flask(__name__)
-
+graph = GraphDatabase('bolt://localhost:7687', auth=basic_auth('neo4j', 'neo4j-server'))
 
 class JigAPI(MethodView):
     def get(self, label):
         try:
-            graph = GraphDatabase('bolt://localhost:7687', auth=basic_auth('neo4j', 'neo4j-server'))
-
             with graph.session() as session:
                 result = session.run('MATCH p=(n:{label})-[r]->(m) RETURN p', label=label)
 
